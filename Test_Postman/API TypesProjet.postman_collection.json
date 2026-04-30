@@ -1,0 +1,119 @@
+{
+  "info": {
+    "_postman_id": "a6652d56-e6d1-4b5b-b219-123ccbca2522",
+    "name": "API TypesProjet",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53891703",
+    "_collection_link": "https://go.postman.co/collection/53891703-a6652d56-e6d1-4b5b-b219-123ccbca2522?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "obtenir les types de projet",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/TypeProjet",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "TypeProjet"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Ajout d'un type de projet",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nom_type\": \"Application Web\",\r\n  \"id_eleve\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/TypeProjet",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "TypeProjet"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "modifier un type de projet",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nom_type\": \"le nom est changer\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/TypeProjet/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "TypeProjet",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/TypeProjet/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "TypeProjet",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "tp2-h2026_4wa_tp1_celesteb_kelyana_nicolasp",
+  "version": "1.0.0",
+  "description": "[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/JQR2ZGfF)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BdeB-Org/tp2-h2026_4wa_tp1_celesteb_kelyana_nicolasp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BdeB-Org/tp2-h2026_4wa_tp1_celesteb_kelyana_nicolasp/issues"
+  },
+  "homepage": "https://github.com/BdeB-Org/tp2-h2026_4wa_tp1_celesteb_kelyana_nicolasp#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "sqlite3": "^6.0.1"
+  }
+}
