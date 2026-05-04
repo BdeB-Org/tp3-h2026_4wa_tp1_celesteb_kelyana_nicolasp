@@ -17,7 +17,7 @@ function escapeHtml(value) {
         .replaceAll("'", '&#039;');
 }
 
-async function chargerEtudiants() {
+async function choisirTypeProjet() {
     try {
         const res = await apiFetch('/api/etudiants');
         const data = await res.json();
@@ -62,7 +62,7 @@ form.addEventListener('submit', async (e) => {
 
         form.reset();
         showMessage('Étudiant ajouté avec succès');
-        chargerEtudiants();
+        choisirTypeProjet();
     } catch (err) {
         showMessage(err.message, true);
     }
@@ -83,10 +83,10 @@ async function supprimerEtudiant(id) {
         }
 
         showMessage(data.message);
-        chargerEtudiants();
+        choisirTypeProjet();
     } catch (err) {
         showMessage(err.message, true);
     }
 }
 
-chargerEtudiants();
+choisirTypeProjet();

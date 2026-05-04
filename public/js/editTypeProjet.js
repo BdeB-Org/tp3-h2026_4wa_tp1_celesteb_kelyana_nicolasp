@@ -9,17 +9,17 @@ function showMessage(text, isError = false) {
     message.innerHTML = `<div class="message ${isError ? 'error' : ''}">${text}</div>`;
 }
 
-async function chargerEtudiant() {
+async function choisirTypeProjet() {
     try {
-        const res = await apiFetch('/api/etudiants/' + id);
+        const res = await apiFetch('/api/TypeProjet/' + id);
         const data = await res.json();
 
         if (!res.ok) {
             throw new Error(data.message || 'Erreur lors du chargement');
         }
 
-        document.getElementById('nom').value = data.nom;
-        document.getElementById('programme').value = data.programme;
+        document.getElementById('id_type').value = data.nom;
+        document.getElementById('nom_type').value = data.programme;
     } catch (err) {
         showMessage(err.message, true);
     }
@@ -45,7 +45,7 @@ form.addEventListener('submit', async (e) => {
 
         showMessage(data.message);
         setTimeout(() => {
-            window.location.href = '/liste.html';
+            window.location.href = '/listTypeProjet.html';
         }, 800);
     } catch (err) {
         showMessage(err.message, true);
@@ -55,5 +55,5 @@ form.addEventListener('submit', async (e) => {
 if (!id) {
     showMessage('ID étudiant manquant', true);
 } else {
-    chargerEtudiant();
+    choisirTypeProjet();
 }
