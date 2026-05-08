@@ -1,4 +1,5 @@
 const sqlite3 = require('sqlite3').verbose();
+
 const db = new sqlite3.Database('./BDsql_TP1_CelesteB_KelyanA_NicolasP.db', (err) => {
  if (err) {
         console.error('Erreur SQLite :', err.message);
@@ -9,7 +10,7 @@ const db = new sqlite3.Database('./BDsql_TP1_CelesteB_KelyanA_NicolasP.db', (err
 
 db.serialize(() => {
     db.run(`
-        CREATE TABLE IF NOT EXISTS etudiants (
+        CREATE TABLE IF NOT EXISTS Eleve (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nom TEXT,
             programme TEXT

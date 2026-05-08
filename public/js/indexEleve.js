@@ -49,7 +49,7 @@ form.addEventListener('submit', async (e) => {
     const nom = document.getElementById('nom').value.trim();
 
     try {
-        const res = await apiFetch('/api/Eleves', {
+        const res = await apiFetch('/api/Eleve', {
             method: 'POST',
             body: JSON.stringify({ prenom, nom })
         });

@@ -1,7 +1,6 @@
 requireAuth();
 
-const form = document.getElementById('formAjout');
-const tbody = document.getElementById('tbodyEtudiants');
+const tbody = document.getElementById('tbodyListe');
 const message = document.getElementById('message');
 
 function showMessage(text, isError = false) {
@@ -72,7 +71,7 @@ async function supprimerEleve(id_eleve) {
     if (!confirm('Voulez-vous vraiment supprimer cet étudiant ?')) return;
 
     try {
-        const res = await apiFetch('/api/etudiants/' + id_eleve, {
+        const res = await apiFetch('/api/Eleve/' + id_eleve, {
             method: 'DELETE'
         });
 

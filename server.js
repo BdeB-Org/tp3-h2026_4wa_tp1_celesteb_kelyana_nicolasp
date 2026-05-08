@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const authMiddleware = require('./middleware/authMiddleware');
 
 // Initialise la BD
 require('./config/database');
@@ -14,8 +15,9 @@ const eleveRoutes = require("./routes/etudiantsRoutes");
 // const imagesRoutes = require("./routes/imagesRoutes");
 const authRoutes = require('./routes/authRoutes');
 
-app.use('/api', eleveRoutes);
 app.use('/api/auth', authRoutes);
+
+app.use('/api', eleveRoutes);
 
 // Redirection par défaut
 app.get('/', (req, res) => {
