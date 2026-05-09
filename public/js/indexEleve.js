@@ -31,7 +31,7 @@ async function chargerEleve() {
                 <td>${escapeHtml(Eleve.prenom)}</td>
                 <td>${escapeHtml(Eleve.nom)}</td>
                 <td>
-                    <a class="btn-link" href="/edit.html?id_eleve=${Eleve.id_eleve}">Modifier</a>
+                    <a class="btn-link" href="/editEleve.html?id_eleve=${Eleve.id_eleve}">Modifier</a>
                     <button class="danger" onclick="supprimerEleve(${Eleve.id_eleve})">Supprimer</button>
                 </td>
             `;

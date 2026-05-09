@@ -53,7 +53,7 @@ form.addEventListener('submit', async (e) => {
 });
 
 if (!id) {
-    showMessage('ID eleve manquant', true);
+    showMessage('ID étudiant manquant', true);
 } else {
     chargerEleve();
 }

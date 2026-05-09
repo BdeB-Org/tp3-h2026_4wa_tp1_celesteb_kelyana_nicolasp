@@ -3,14 +3,25 @@ const db = require('../config/database.js');
 
 //Opération Create->Select->GET
 exports.getEleve = (req,res)=>{
- db.all('SELECT * FROM Eleve',(err,rows)=>{
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ erreur: err.message });
-    }
+ db.all('SELECT * FROM Eleve', (err,rows)=>{
   res.json(rows);
  });
 };
+
+exports.getEleveById = (req,res)=>{
+ const id = req.params.id;
+ db.get(
+  'SELECT * FROM Eleve WHERE id_eleve=?',
+  [id],
+  (err,row)=>{
+   if(err){
+    return res.status(500).json({
+     message:"Erreur serveur"
+    }); }
+   if(!row){
+    return res.status(404).json({
+     message:"Étudiant non trouvé"  }); }
+   res.json(row);});};
 
 exports.addEleve = (req,res)=>{
     const nom = req.body.nom;
