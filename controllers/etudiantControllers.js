@@ -87,21 +87,20 @@ return res.status(400).json({ message: "ID manquant" });
 }
 
 // Exécuter la requête SQL avec callback​
-db.run(
-'DELETE FROM Eleve WHERE id_eleve = ?',
-[id],
-function(err) {
-if (err) {
-console.error(err);
-return res.status(500).json({ erreur: err.message });
-}
+db.run('DELETE FROM Eleve WHERE id_eleve = ?',
+    [id],
+    function(err) {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ erreur: err.message });
+        }
 
-// Vérifier si une ligne a été supprimée​
-if (this.changes === 0) {
-return res.status(404).json({ message: "Aucun étudiant trouvé avec cet ID" });
-}
+        // Vérifier si une ligne a été supprimée​
+        if (this.changes === 0) {
+            return res.status(404).json({ message: "Aucun étudiant trouvé avec cet ID" });
+        }
 
-res.json({ message: "Étudiant supprimé", id: id });
+        res.json({ message: "Étudiant supprimé", id: id });
 }
 );
 

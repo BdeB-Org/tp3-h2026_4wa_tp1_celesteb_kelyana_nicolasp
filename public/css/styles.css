@@ -97,3 +97,17 @@ th {
     color: #555;
     font-size: 14px;
 }
+
+.btn-projet {
+    padding: 10px 100px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #951fc7;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 15px;
+    }
