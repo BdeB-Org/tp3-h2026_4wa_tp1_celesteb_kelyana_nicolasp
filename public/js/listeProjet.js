@@ -31,8 +31,8 @@ async function chargerProjet() {
                 <td>${escapeHtml(Projet.titre)}</td>
                 <td>${escapeHtml(Projet.description)}</td>
                 <td>
-                    <a class="btn-link" href="/editProjet.html?id=${Projet.id_projet}">Modifier</a>
-                    <button class="danger" onclick="supprimerProjet(${Projet.id_projet})">Supprimer</button>
+                    <a class="btn-link" href="/editProjet.html?id=${Projet.id}">Modifier</a>
+                    <button class="danger" onclick="supprimerProjet(${Projet.id})">Supprimer</button>
                 </td>
             `;
             tbody.appendChild(tr);
@@ -68,11 +68,11 @@ async function chargerProjet() {
 // //     }
 // });
 
-async function supprimerProjet(Projet.id_projet) {
+async function supprimerProjet(id_projet) {
     if (!confirm('Voulez-vous vraiment supprimer ce Projet ?')) return;
 
     try {
-        const res = await apiFetch('/api/Projet/' + Projet.id_projet, {
+        const res = await apiFetch('/api/Projet/' + id_projet, {
             method: 'DELETE'
         });
 
