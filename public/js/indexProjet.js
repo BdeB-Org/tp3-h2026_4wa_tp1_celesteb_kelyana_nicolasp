@@ -27,7 +27,7 @@ async function chargerProjet() {
         data.forEach(Projet => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td>${Projet.id}</td>
+                <td>${Projet.id_projet}</td>
                 <td>${escapeHtml(Projet.titre)}</td>
                 <td>${escapeHtml(Projet.description)}</td>
                 <td>
