@@ -19,20 +19,20 @@ function escapeHtml(value) {
 
 async function chargerEtudiants() {
     try {
-        const res = await apiFetch('/api/etudiants');
+        const res = await apiFetch('/api/Projet');
         const data = await res.json();
 
         tbody.innerHTML = '';
 
-        data.forEach(etudiant => {
+        data.forEach(Projet => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td>${etudiant.id}</td>
-                <td>${escapeHtml(etudiant.nom)}</td>
-                <td>${escapeHtml(etudiant.programme)}</td>
+                <td>${escapeHtml(Projet.titre)}</td>
+                <td>${escapeHtml(Projet.description)}</td>
                 <td>
-                    <a class="btn-link" href="/edit.html?id=${etudiant.id}">Modifier</a>
-                    <button class="danger" onclick="supprimerEtudiant(${etudiant.id})">Supprimer</button>
+                    <a class="btn-link" href="/edit.html?id=${Projet.id}">Modifier</a>
+                    <button class="danger" onclick="supprimerEtudiant(${Projet.id})">Supprimer</button>
                 </td>
             `;
             tbody.appendChild(tr);
@@ -42,37 +42,37 @@ async function chargerEtudiants() {
     }
 }
 
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+// form.addEventListener('submit', async (e) => {
+//     e.preventDefault();
 
-    const nom = document.getElementById('nom').value.trim();
-    const programme = document.getElementById('programme').value.trim();
+//     const titre = document.getElementById('titre').value.trim();
+//     const description = document.getElementById('description').value.trim();
+
+//     try {
+//         const res = await apiFetch('/api/Projet', {
+//             method: 'POST',
+//             body: JSON.stringify({ titre, description })
+//         });
+
+//         const data = await res.json();
+
+//         if (!res.ok) {
+//             throw new Error(data.message || 'Erreur lors de l\'ajout');
+//         }
+
+//         form.reset();
+//         showMessage('Projet ajouté avec succès');
+//         chargerEtudiants();
+//     } catch (err) {
+//         showMessage(err.message, true);
+// //     }
+// });
+
+async function supprimerProjet(id) {
+    if (!confirm('Voulez-vous vraiment supprimer cet Projet ?')) return;
 
     try {
-        const res = await apiFetch('/api/etudiants', {
-            method: 'POST',
-            body: JSON.stringify({ nom, programme })
-        });
-
-        const data = await res.json();
-
-        if (!res.ok) {
-            throw new Error(data.message || 'Erreur lors de l\'ajout');
-        }
-
-        form.reset();
-        showMessage('Étudiant ajouté avec succès');
-        chargerEtudiants();
-    } catch (err) {
-        showMessage(err.message, true);
-    }
-});
-
-async function supprimerEtudiant(id) {
-    if (!confirm('Voulez-vous vraiment supprimer cet étudiant ?')) return;
-
-    try {
-        const res = await apiFetch('/api/etudiants/' + id, {
+        const res = await apiFetch('/api/Projet/' + id, {
             method: 'DELETE'
         });
 
@@ -83,10 +83,10 @@ async function supprimerEtudiant(id) {
         }
 
         showMessage(data.message);
-        chargerEtudiants();
+        chargerProjet();
     } catch (err) {
         showMessage(err.message, true);
     }
 }
 
-chargerEtudiants();
+chargerProjet();
