@@ -2,14 +2,14 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Gestion des étudiants</title>
+    <title>Gestion des projets</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="container">
         <div class="topbar">
             <div>
-                <h1>Gestion des étudiants</h1>
+                <h1>Gestion des projets</h1>
                 <p class="small">Ajout et affichage dans un tableau</p>
             </div>
             <div class="actions">
@@ -20,24 +20,24 @@
 
         <div id="message"></div>
 
-        <h2>Ajouter un étudiant</h2>
+        <h2>Ajouter un projet</h2>
         <form id="formAjout">
             <input type="text" id="Projet" placeholder="Projet" required>
             <input type="text" id="ListProjet" placeholder="ListProjet" required>
             <button type="submit">Ajouter</button>
         </form>
 
-        <h2>Ensemble des étudiants</h2>
+        <h2>Ensemble des projets</h2>
         <table>
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nom</th>
-                    <th>Programme</th>
+                    <th>Titre</th>
+                    <th>Description</th>
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id="tbodyEtudiants"></tbody>
+            <tbody id="tbodyProjet"></tbody>
         </table>
     </div>
 
