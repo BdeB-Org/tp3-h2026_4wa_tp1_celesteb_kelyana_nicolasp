@@ -3,7 +3,7 @@ requireAuth();
 const form = document.getElementById('formEdit');
 const message = document.getElementById('message');
 const params = new URLSearchParams(window.location.search);
-const id = params.get('id');
+const id = params.get('id_projet');
 
 function showMessage(text, isError = false) {
     message.innerHTML = `<div class="message ${isError ? 'error' : ''}">${text}</div>`;
