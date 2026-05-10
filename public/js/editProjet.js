@@ -11,15 +11,15 @@ function showMessage(text, isError = false) {
 
 async function chargerEtudiant() {
     try {
-        const res = await apiFetch('/api/etudiants/' + id);
+        const res = await apiFetch('/api/Projet/' + id);
         const data = await res.json();
 
         if (!res.ok) {
             throw new Error(data.message || 'Erreur lors du chargement');
         }
 
-        document.getElementById('nom').value = data.nom;
-        document.getElementById('programme').value = data.programme;
+        document.getElementById('titre').value = data.titre;
+        document.getElementById('description').value = data.description;
     } catch (err) {
         showMessage(err.message, true);
     }
@@ -28,13 +28,13 @@ async function chargerEtudiant() {
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const nom = document.getElementById('nom').value.trim();
-    const programme = document.getElementById('programme').value.trim();
+    const titre = document.getElementById('titre').value.trim();
+    const description = document.getElementById('description').value.trim();
 
     try {
-        const res = await apiFetch('/api/etudiants/' + id, {
+        const res = await apiFetch('/api/Projet/' + id, {
             method: 'PUT',
-            body: JSON.stringify({ nom, programme })
+            body: JSON.stringify({ titre, description })
         });
 
         const data = await res.json();
@@ -53,7 +53,7 @@ form.addEventListener('submit', async (e) => {
 });
 
 if (!id) {
-    showMessage('ID étudiant manquant', true);
+    showMessage('ID Projet manquant', true);
 } else {
-    chargerEtudiant();
+    chargerProjet();
 }
