@@ -28,8 +28,8 @@ async function chargerProjet() {
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td>${Projet.id}</td>
-                <td>${escapeHtml(Projet.Titre)}</td>
-                <td>${escapeHtml(Projet.Description)}</td>
+                <td>${escapeHtml(Projet.titre)}</td>
+                <td>${escapeHtml(Projet.description)}</td>
                 <td>
                     <a class="btn-link" href="/editProjet.html?id=${Projet.id}">Modifier</a>
                     <button class="danger" onclick="supprimerProjet(${Projet.id})">Supprimer Projet</button>
@@ -45,8 +45,8 @@ async function chargerProjet() {
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const titre = document.getElementById('Titre').value.trim();
-    const description = document.getElementById('Description').value.trim();
+    const titre = document.getElementById('titre').value.trim();
+    const description = document.getElementById('description').value.trim();
 
     try {
         const res = await apiFetch('/api/Projet', {
