@@ -68,11 +68,11 @@ form.addEventListener('submit', async (e) => {
     }
 });
 
-async function supprimerProjet(id) {
+async function supprimerProjet(id_projet) {
     if (!confirm('Voulez-vous vraiment supprimer ce projet ?')) return;
 
     try {
-        const res = await apiFetch('/api/Projet/' + id, {
+        const res = await apiFetch('/api/Projet/' + id_projet, {
             method: 'DELETE'
         });
 
