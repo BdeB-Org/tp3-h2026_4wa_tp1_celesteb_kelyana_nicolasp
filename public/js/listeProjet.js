@@ -27,12 +27,12 @@ async function chargerProjet() {
         data.forEach(Projet => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td>${Projet.id}</td>
+                <td>${Projet.id_projet}</td>
                 <td>${escapeHtml(Projet.titre)}</td>
                 <td>${escapeHtml(Projet.description)}</td>
                 <td>
-                    <a class="btn-link" href="/edit.html?id=${Projet.id}">Modifier</a>
-                    <button class="danger" onclick="supprimerProjet(${Projet.id})">Supprimer</button>
+                    <a class="btn-link" href="/editProjet.html?id=${Projet.id_projet}">Modifier</a>
+                    <button class="danger" onclick="supprimerProjet(${Projet.id_projet})">Supprimer</button>
                 </td>
             `;
             tbody.appendChild(tr);
@@ -68,11 +68,11 @@ async function chargerProjet() {
 // //     }
 // });
 
-async function supprimerProjet(id) {
+async function supprimerProjet(Projet.id_projet) {
     if (!confirm('Voulez-vous vraiment supprimer ce Projet ?')) return;
 
     try {
-        const res = await apiFetch('/api/Projet/' + id, {
+        const res = await apiFetch('/api/Projet/' + Projet.id_projet, {
             method: 'DELETE'
         });
 
