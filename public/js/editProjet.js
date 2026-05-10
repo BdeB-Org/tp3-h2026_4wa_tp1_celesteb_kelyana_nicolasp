@@ -9,7 +9,7 @@ function showMessage(text, isError = false) {
     message.innerHTML = `<div class="message ${isError ? 'error' : ''}">${text}</div>`;
 }
 
-async function chargerEtudiant() {
+async function chargerProjet() {
     try {
         const res = await apiFetch('/api/Projet/' + id);
         const data = await res.json();
@@ -45,7 +45,7 @@ form.addEventListener('submit', async (e) => {
 
         showMessage(data.message);
         setTimeout(() => {
-            window.location.href = '/liste.html';
+            window.location.href = '/EditProjet.html';
         }, 800);
     } catch (err) {
         showMessage(err.message, true);
