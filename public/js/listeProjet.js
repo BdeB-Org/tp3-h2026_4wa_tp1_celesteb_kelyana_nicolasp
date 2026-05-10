@@ -1,7 +1,7 @@
 requireAuth();
 
 const form = document.getElementById('formAjout');
-const tbody = document.getElementById('tbodyEtudiants');
+const tbody = document.getElementById('tbodyProjet');
 const message = document.getElementById('message');
 
 function showMessage(text, isError = false) {
@@ -17,7 +17,7 @@ function escapeHtml(value) {
         .replaceAll("'", '&#039;');
 }
 
-async function chargerEtudiants() {
+async function chargerProjet() {
     try {
         const res = await apiFetch('/api/Projet');
         const data = await res.json();
@@ -27,12 +27,12 @@ async function chargerEtudiants() {
         data.forEach(Projet => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td>${etudiant.id}</td>
+                <td>${Projet.id}</td>
                 <td>${escapeHtml(Projet.titre)}</td>
                 <td>${escapeHtml(Projet.description)}</td>
                 <td>
                     <a class="btn-link" href="/edit.html?id=${Projet.id}">Modifier</a>
-                    <button class="danger" onclick="supprimerEtudiant(${Projet.id})">Supprimer</button>
+                    <button class="danger" onclick="supprimerProjet(${Projet.id})">Supprimer</button>
                 </td>
             `;
             tbody.appendChild(tr);
@@ -62,14 +62,14 @@ async function chargerEtudiants() {
 
 //         form.reset();
 //         showMessage('Projet ajouté avec succès');
-//         chargerEtudiants();
+//         chargerProjet();
 //     } catch (err) {
 //         showMessage(err.message, true);
 // //     }
 // });
 
 async function supprimerProjet(id) {
-    if (!confirm('Voulez-vous vraiment supprimer cet Projet ?')) return;
+    if (!confirm('Voulez-vous vraiment supprimer ce Projet ?')) return;
 
     try {
         const res = await apiFetch('/api/Projet/' + id, {
