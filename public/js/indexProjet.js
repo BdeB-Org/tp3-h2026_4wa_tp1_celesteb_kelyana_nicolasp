@@ -61,7 +61,7 @@ form.addEventListener('submit', async (e) => {
         }
 
         form.reset();
-        showMessage('Étudiant ajouté avec succès');
+        showMessage('Projet ajouté avec succès');
         chargerProjet();
     } catch (err) {
         showMessage(err.message, true);
@@ -69,7 +69,7 @@ form.addEventListener('submit', async (e) => {
 });
 
 async function supprimerProjet(id) {
-    if (!confirm('Voulez-vous vraiment supprimer cet étudiant ?')) return;
+    if (!confirm('Voulez-vous vraiment supprimer ce projet ?')) return;
 
     try {
         const res = await apiFetch('/api/Projet/' + id, {
