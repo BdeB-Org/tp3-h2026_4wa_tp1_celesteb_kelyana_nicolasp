@@ -1,9 +1,11 @@
 // Fait par Kelyan
 const express = require("express");
-
 const router = express.Router();
+const authMiddleware = require("../middleware/authMiddleware");
 
 const projetController = require("../controllers/projetController");
+
+router.use(authMiddleware);
 
 router.get("/Projet", projetController.getProjet);
 router.post("/Projet", projetController.addProjet)

@@ -1,6 +1,6 @@
 requireAuth();
 
-const tbody = document.getElementById('tbodyListe');
+const tbody = document.getElementById('tbodyListeEleve');
 const message = document.getElementById('message');
 
 function showMessage(text, isError = false) {
