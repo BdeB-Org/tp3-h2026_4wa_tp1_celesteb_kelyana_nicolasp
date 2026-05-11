@@ -31,8 +31,8 @@ async function chargerProjet() {
                 <td>${escapeHtml(Projet.titre)}</td>
                 <td>${escapeHtml(Projet.description)}</td>
                 <td>
-                    <a class="btn-link" href="/editProjet.html?id=${Projet.id}">Modifier</a>
-                    <button class="danger" onclick="supprimerProjet(${Projet.id})">Supprimer</button>
+                    <a class="btn-link" href="/editProjet.html?id=${Projet.id_projet}">Modifier</a>
+                    <button class="danger" onclick="supprimerProjet(${Projet.id_projet})">Supprimer</button>
                 </td>
             `;
             tbody.appendChild(tr);
@@ -41,32 +41,6 @@ async function chargerProjet() {
         showMessage(err.message, true);
     }
 }
-
-// form.addEventListener('submit', async (e) => {
-//     e.preventDefault();
-
-//     const titre = document.getElementById('titre').value.trim();
-//     const description = document.getElementById('description').value.trim();
-
-//     try {
-//         const res = await apiFetch('/api/Projet', {
-//             method: 'POST',
-//             body: JSON.stringify({ titre, description })
-//         });
-
-//         const data = await res.json();
-
-//         if (!res.ok) {
-//             throw new Error(data.message || 'Erreur lors de l\'ajout');
-//         }
-
-//         form.reset();
-//         showMessage('Projet ajouté avec succès');
-//         chargerProjet();
-//     } catch (err) {
-//         showMessage(err.message, true);
-// //     }
-// });
 
 async function supprimerProjet(id_projet) {
     if (!confirm('Voulez-vous vraiment supprimer ce Projet ?')) return;

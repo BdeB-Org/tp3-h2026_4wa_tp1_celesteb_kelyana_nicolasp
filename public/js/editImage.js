@@ -11,7 +11,7 @@ function showMessage(text, isError = false) {
 
 async function chargerImage() {
     try {
-        const res = await apiFetch('/api/Image/' + id);
+        const res = await apiFetch('/api/ImageProjet/' + id);
         const data = await res.json();
 
         if (!res.ok) {
@@ -32,7 +32,7 @@ form.addEventListener('submit', async (e) => {
     const projet = document.getElementById('projet').value.trim();
 
     try {
-        const res = await apiFetch('/api/Image/' + id, {
+        const res = await apiFetch('/api/ImageProjet/' + id, {
             method: 'PUT',
             body: JSON.stringify({ image, projet })
         });

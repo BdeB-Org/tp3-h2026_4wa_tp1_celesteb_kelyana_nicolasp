@@ -19,7 +19,7 @@ function escapeHtml(value) {
 
 async function chargerImage() {
     try {
-        const res = await apiFetch('/api/Image');
+        const res = await apiFetch('/api/ImageProjet');
         const data = await res.json();
 
         tbody.innerHTML = '';
@@ -49,7 +49,7 @@ form.addEventListener('submit', async (e) => {
     const projet = document.getElementById('id_numero_projet').value.trim();
 
     try {
-        const res = await apiFetch('/api/Image', {
+        const res = await apiFetch('/api/ImageProjet', {
             method: 'POST',
             body: JSON.stringify({ image, projet })
         });
@@ -72,7 +72,7 @@ async function supprimerImage(id) {
     if (!confirm('Voulez-vous vraiment supprimer cette image ?')) return;
 
     try {
-        const res = await apiFetch('/api/Image/' + id, {
+        const res = await apiFetch('/api/ImageProjet/' + id, {
             method: 'DELETE'
         });
 

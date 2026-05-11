@@ -18,7 +18,7 @@ function escapeHtml(value) {
 
 async function chargerEtudiants() {
     try {
-        const res = await apiFetch('/api/Image');
+        const res = await apiFetch('/api/ImageProjet');
         const data = await res.json();
 
         tbody.innerHTML = '';
@@ -45,7 +45,7 @@ async function supprimerImage(id) {
     if (!confirm('Voulez-vous vraiment supprimer cet image ?')) return;
 
     try {
-        const res = await apiFetch('/api/Image/' + id, { method: 'DELETE' });
+        const res = await apiFetch('/api/ImageProjet/' + id, { method: 'DELETE' });
         const data = await res.json();
 
         if (!res.ok) {

@@ -20,7 +20,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api', eleveRoutes);
 app.use('/api/TypeProjet', typesprojetRoutes);
 app.use('/api/Projet', projetRoutes);
-app.use('/api/Images', imagesRoutes);
+app.use('/api/ImageProjet', imagesRoutes);
 
 // Redirection par défaut
 app.get('/', (req, res) => {

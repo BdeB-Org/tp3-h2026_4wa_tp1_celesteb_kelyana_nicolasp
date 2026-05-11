@@ -41,32 +41,6 @@ async function chargerEleve() {
     }
 }
 
-// form.addEventListener('submit', async (e) => {
-//     e.preventDefault();
-
-//     const prenom = document.getElementById('prenom').value.trim();
-//     const nom = document.getElementById('nom').value.trim();
-
-//     try {
-//         const res = await apiFetch('/api/Eleve', {
-//             method: 'POST',
-//             body: JSON.stringify({ prenom, nom })
-//         });
-
-//         const data = await res.json();
-
-//         if (!res.ok) {
-//             throw new Error(data.message || 'Erreur lors de l\'ajout');
-//         }
-
-//         form.reset();
-//         showMessage('Étudiant ajouté avec succès');
-//         chargerEleve();
-//     } catch (err) {
-//         showMessage(err.message, true);
-//     }
-// });
-
 async function supprimerEleve(id_eleve) {
     if (!confirm('Voulez-vous vraiment supprimer cet étudiant ?')) return;
 
