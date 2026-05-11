@@ -17,7 +17,7 @@ const authRoutes = require('./routes/authRoutes');
 
 app.use('/api/auth', authRoutes);
 
-app.use('/api', eleveRoutes);
+app.use('/api/Eleve', eleveRoutes);
 app.use('/api/TypeProjet', typesprojetRoutes);
 app.use('/api/Projet', projetRoutes);
 app.use('/api/ImageProjet', imagesRoutes);

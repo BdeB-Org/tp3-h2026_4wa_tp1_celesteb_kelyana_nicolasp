@@ -7,10 +7,10 @@ const projetController = require("../controllers/projetController");
 
 router.use(authMiddleware);
 
-router.get("/Projet", projetController.getProjet);
-router.get("/Projet/:id", projetController.getProjetById);
-router.post("/Projet", projetController.addProjet)
-router.delete("/Projet/:id", projetController.deleteProjet);
-router.put("/Projet/:id", projetController.updateProjet);
+router.get("/", projetController.getProjet);
+router.get("/:id", projetController.getProjetById);
+router.post("/", projetController.addProjet)
+router.delete("/:id", projetController.deleteProjet);
+router.put("/:id", projetController.updateProjet);
 
 module.exports = router;
