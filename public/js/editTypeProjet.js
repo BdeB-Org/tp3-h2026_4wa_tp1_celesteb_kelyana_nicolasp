@@ -19,7 +19,7 @@ async function choisirTypeProjet() {
         }
 
         document.getElementById('id_type').value = data.id_type;
-        document.getElementById('nom_type').value = data.nom;
+        document.getElementById('nom_type').value = data.nom_type;
     } catch (err) {
         showMessage(err.message, true);
     }
@@ -33,7 +33,7 @@ form.addEventListener('submit', async (e) => {
     try {
         const res = await apiFetch('/api/TypeProjet/' + id, {
             method: 'PUT',
-            body: JSON.stringify({ nom })
+            body: JSON.stringify({ nom_type: nom })
         });
 
         const data = await res.json();

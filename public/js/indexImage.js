@@ -28,11 +28,11 @@ async function chargerImage() {
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td>${Image.id_image}</td>
-                <td>${escapeHtml(Image.image)}</td>
-                <td>${escapeHtml(Image.id_numero_projet)}</td>
+                <td>${escapeHtml(Image.chemin_image)}</td>
+                <td>${escapeHtml(Image.id_projet)}</td>
                 <td>
                     <a class="btn-link" href="/editImage.html?id=${Image.id_image}">Modifier</a>
-                    <button class="danger" onclick="supprimerImage(${etudiant.id_image})">Supprimer</button>
+                    <button class="danger" onclick="supprimerImage(${Image.id_image})">Supprimer</button>
                 </td>
             `;
             tbody.appendChild(tr);

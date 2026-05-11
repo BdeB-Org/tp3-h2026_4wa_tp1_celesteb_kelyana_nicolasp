@@ -18,8 +18,9 @@ async function chargerImage() {
             throw new Error(data.message || 'Erreur lors du chargement');
         }
 
-        document.getElementById('image').value = data.image;
-        document.getElementById('id_numero_projet').value = data.projet;
+        document.getElementById('id_eleve').value = data.id_eleve;
+        document.getElementById('chemin_image').value = data.chemin_image;
+        document.getElementById('id_projet').value = data.id_projet;
     } catch (err) {
         showMessage(err.message, true);
     }
@@ -28,13 +29,14 @@ async function chargerImage() {
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const image = document.getElementById('image').value.trim();
-    const projet = document.getElementById('projet').value.trim();
+    const eleve = document.getElementById('id_eleve').value.trim();
+    const image = document.getElementById('chemin_image').value.trim();
+    const projet = document.getElementById('id_projet').value.trim();
 
     try {
         const res = await apiFetch('/api/ImageProjet/' + id, {
             method: 'PUT',
-            body: JSON.stringify({ image, projet })
+            body: JSON.stringify({ image, projet, eleve })
         });
 
         const data = await res.json();

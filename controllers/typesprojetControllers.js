@@ -28,15 +28,14 @@ exports.getTypeProjetById = (req,res)=>{
 
 exports.addTypeProjet = (req, res) => {
     const type = req.body.nom_type;
-    const id_eleve = req.body.id_eleve;
 
-    if (!type || !id_eleve) {
+    if (!type ) {
         return res.status(400).json({
-            message: "nom_type et id_eleve sont requis"
+            message: "nom_type sont requis"
         });
     }
 
-    console.log("Insertion:", type, id_eleve);
+    console.log("Insertion:", type);
 
     db.run(
         "INSERT INTO TypeProjet(nom_type) VALUES (?)",

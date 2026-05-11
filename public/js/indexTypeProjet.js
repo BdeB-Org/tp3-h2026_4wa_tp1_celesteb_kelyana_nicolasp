@@ -1,7 +1,7 @@
 requireAuth();
 
 const form = document.getElementById('formAjout');
-const tbody = document.getElementById('tbodyTypeProjet');
+const tbody = document.getElementById('tbodyTypesProjet');
 const message = document.getElementById('message');
 
 function showMessage(text, isError = false) {
@@ -28,7 +28,7 @@ async function choisirTypeProjet() {
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td>${typeProjet.id_type}</td>
-                <td>${escapeHtml(typeProjet.nom)}</td>
+                <td>${escapeHtml(typeProjet.nom_type)}</td>
                 <td>
                     <a class="btn-link" href="/editTypeProjet.html?id=${typeProjet.id_type}">Modifier</a>
                     <button class="danger" onclick="supprimerTypeProjet(${typeProjet.id_type})">Supprimer</button>
@@ -49,7 +49,7 @@ form.addEventListener('submit', async (e) => {
     try {
         const res = await apiFetch('/api/TypeProjet', {
             method: 'POST',
-            body: JSON.stringify({ nom })
+            body: JSON.stringify({ nom_type: nom })
         });
 
         const data = await res.json();
