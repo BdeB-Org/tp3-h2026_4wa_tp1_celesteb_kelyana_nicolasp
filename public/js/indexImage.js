@@ -1,7 +1,7 @@
 requireAuth();
 
 const form = document.getElementById('formAjout');
-const tbody = document.getElementById('tbodyEtudiants');
+const tbody = document.getElementById('tbodyImage');
 const message = document.getElementById('message');
 
 function showMessage(text, isError = false) {
@@ -17,22 +17,22 @@ function escapeHtml(value) {
         .replaceAll("'", '&#039;');
 }
 
-async function chargerEtudiants() {
+async function chargerImage() {
     try {
-        const res = await apiFetch('/api/etudiants');
+        const res = await apiFetch('/api/Image');
         const data = await res.json();
 
         tbody.innerHTML = '';
 
-        data.forEach(etudiant => {
+        data.forEach(Image => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td>${etudiant.id}</td>
-                <td>${escapeHtml(etudiant.nom)}</td>
-                <td>${escapeHtml(etudiant.programme)}</td>
+                <td>${Image.id_image}</td>
+                <td>${escapeHtml(Image.image)}</td>
+                <td>${escapeHtml(Image.id_numero_projet)}</td>
                 <td>
-                    <a class="btn-link" href="/edit.html?id=${etudiant.id}">Modifier</a>
-                    <button class="danger" onclick="supprimerEtudiant(${etudiant.id})">Supprimer</button>
+                    <a class="btn-link" href="/editImage.html?id=${Image.id_image}">Modifier</a>
+                    <button class="danger" onclick="supprimerImage(${etudiant.id_image})">Supprimer</button>
                 </td>
             `;
             tbody.appendChild(tr);
@@ -45,13 +45,13 @@ async function chargerEtudiants() {
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const nom = document.getElementById('nom').value.trim();
-    const programme = document.getElementById('programme').value.trim();
+    const image = document.getElementById('image').value.trim();
+    const projet = document.getElementById('id_numero_projet').value.trim();
 
     try {
-        const res = await apiFetch('/api/etudiants', {
+        const res = await apiFetch('/api/Image', {
             method: 'POST',
-            body: JSON.stringify({ nom, programme })
+            body: JSON.stringify({ image, projet })
         });
 
         const data = await res.json();
@@ -61,18 +61,18 @@ form.addEventListener('submit', async (e) => {
         }
 
         form.reset();
-        showMessage('Étudiant ajouté avec succès');
-        chargerEtudiants();
+        showMessage('Image ajouté avec succès');
+        chargerImage();
     } catch (err) {
         showMessage(err.message, true);
     }
 });
 
-async function supprimerEtudiant(id) {
-    if (!confirm('Voulez-vous vraiment supprimer cet étudiant ?')) return;
+async function supprimerImage(id) {
+    if (!confirm('Voulez-vous vraiment supprimer cette image ?')) return;
 
     try {
-        const res = await apiFetch('/api/etudiants/' + id, {
+        const res = await apiFetch('/api/Image/' + id, {
             method: 'DELETE'
         });
 
@@ -83,10 +83,10 @@ async function supprimerEtudiant(id) {
         }
 
         showMessage(data.message);
-        chargerEtudiants();
+        chargerImage();
     } catch (err) {
         showMessage(err.message, true);
     }
 }
 
-chargerEtudiants();
+chargerImage();

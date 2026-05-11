@@ -3,23 +3,23 @@ requireAuth();
 const form = document.getElementById('formEdit');
 const message = document.getElementById('message');
 const params = new URLSearchParams(window.location.search);
-const id = params.get('id');
+const id = params.get('id_image');
 
 function showMessage(text, isError = false) {
     message.innerHTML = `<div class="message ${isError ? 'error' : ''}">${text}</div>`;
 }
 
-async function chargerEtudiant() {
+async function chargerImage() {
     try {
-        const res = await apiFetch('/api/etudiants/' + id);
+        const res = await apiFetch('/api/Image/' + id);
         const data = await res.json();
 
         if (!res.ok) {
             throw new Error(data.message || 'Erreur lors du chargement');
         }
 
-        document.getElementById('nom').value = data.nom;
-        document.getElementById('programme').value = data.programme;
+        document.getElementById('image').value = data.image;
+        document.getElementById('id_numero_projet').value = data.projet;
     } catch (err) {
         showMessage(err.message, true);
     }
@@ -28,13 +28,13 @@ async function chargerEtudiant() {
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const nom = document.getElementById('nom').value.trim();
-    const programme = document.getElementById('programme').value.trim();
+    const image = document.getElementById('image').value.trim();
+    const projet = document.getElementById('projet').value.trim();
 
     try {
-        const res = await apiFetch('/api/etudiants/' + id, {
+        const res = await apiFetch('/api/Image/' + id, {
             method: 'PUT',
-            body: JSON.stringify({ nom, programme })
+            body: JSON.stringify({ image, projet })
         });
 
         const data = await res.json();
@@ -45,7 +45,7 @@ form.addEventListener('submit', async (e) => {
 
         showMessage(data.message);
         setTimeout(() => {
-            window.location.href = '/liste.html';
+            window.location.href = '/listImage.html';
         }, 800);
     } catch (err) {
         showMessage(err.message, true);
@@ -55,5 +55,5 @@ form.addEventListener('submit', async (e) => {
 if (!id) {
     showMessage('ID étudiant manquant', true);
 } else {
-    chargerEtudiant();
+    chargerImage();
 }

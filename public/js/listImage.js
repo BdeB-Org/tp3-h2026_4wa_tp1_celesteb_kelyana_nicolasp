@@ -1,6 +1,6 @@
 requireAuth();
 
-const tbody = document.getElementById('tbodyListe');
+const tbody = document.getElementById('tbodyListeImages');
 const message = document.getElementById('message');
 
 function showMessage(text, isError = false) {
@@ -18,20 +18,20 @@ function escapeHtml(value) {
 
 async function chargerEtudiants() {
     try {
-        const res = await apiFetch('/api/etudiants');
+        const res = await apiFetch('/api/Image');
         const data = await res.json();
 
         tbody.innerHTML = '';
 
-        data.forEach(etudiant => {
+        data.forEach(Image => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td>${etudiant.id}</td>
-                <td>${escapeHtml(etudiant.nom)}</td>
-                <td>${escapeHtml(etudiant.programme)}</td>
+                <td>${Image.id_image}</td>
+                <td>${escapeHtml(Image.image)}</td>
+                <td>${escapeHtml(Image.id_numero_projet)}</td>
                 <td>
-                    <a class="btn-link" href="/edit.html?id=${etudiant.id}">Modifier</a>
-                    <button class="danger" onclick="supprimerEtudiant(${etudiant.id})">Supprimer</button>
+                    <a class="btn-link" href="/editImage.html?id=${Image.id_image}">Modifier</a>
+                    <button class="danger" onclick="supprimerImage(${Image.id_image})">Supprimer</button>
                 </td>
             `;
             tbody.appendChild(tr);
@@ -41,11 +41,11 @@ async function chargerEtudiants() {
     }
 }
 
-async function supprimerEtudiant(id) {
-    if (!confirm('Voulez-vous vraiment supprimer cet étudiant ?')) return;
+async function supprimerImage(id) {
+    if (!confirm('Voulez-vous vraiment supprimer cet image ?')) return;
 
     try {
-        const res = await apiFetch('/api/etudiants/' + id, { method: 'DELETE' });
+        const res = await apiFetch('/api/Image/' + id, { method: 'DELETE' });
         const data = await res.json();
 
         if (!res.ok) {
@@ -53,10 +53,10 @@ async function supprimerEtudiant(id) {
         }
 
         showMessage(data.message);
-        chargerEtudiants();
+        chargerImage();
     } catch (err) {
         showMessage(err.message, true);
     }
 }
 
-chargerEtudiants();
+chargerImage();
