@@ -7,9 +7,9 @@ router.use(authMiddleware);
 
 const typesProjetController = require("../controllers/typesprojetControllers");
 
-router.get("/TypeProjet", typesProjetController.getTypeProjet);
-router.post("/TypeProjet", typesProjetController.addTypeProjet)
-router.delete("/TypeProjet/:id", typesProjetController.deleteTypeProjet);
-router.put("/TypeProjet/:id", typesProjetController.updateTypeProjet);
+router.get("/", typesProjetController.getTypeProjet);
+router.post("/", typesProjetController.addTypeProjet)
+router.delete("/:id", typesProjetController.deleteTypeProjet);
+router.put("/:id", typesProjetController.updateTypeProjet);
 
 module.exports = router;

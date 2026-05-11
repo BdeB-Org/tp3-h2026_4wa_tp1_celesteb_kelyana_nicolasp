@@ -7,9 +7,9 @@ const imagesController = require("../controllers/imagesController");
 
 router.use(authMiddleware);
 
-router.get("/ImageProjet", imagesController.getImages);
-router.post("/ImageProjet", imagesController.addImages)
-router.delete("/imageProjet/:id", imagesController.deleteImages);
-router.put('/imageProjet/:id', imagesController.updateImages);
+router.get("/", imagesController.getImages);
+router.post("/", imagesController.addImages)
+router.delete("/:id", imagesController.deleteImages);
+router.put('/:id', imagesController.updateImages);
 
 module.exports = router;
