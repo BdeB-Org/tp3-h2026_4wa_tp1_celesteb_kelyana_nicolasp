@@ -12,7 +12,6 @@ app.use(express.static('public'));
 const projetRoutes = require("./routes/projetRoutes");
 const eleveRoutes = require("./routes/etudiantsRoutes");
 const typesprojetRoutes = require("./routes/typesprojetRoutes");
-const imagesRoutes = require("./routes/imagesRoutes");
 const authRoutes = require('./routes/authRoutes');
 
 app.use('/api/auth', authRoutes);
@@ -20,7 +19,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/Eleve', eleveRoutes);
 app.use('/api/TypeProjet', typesprojetRoutes);
 app.use('/api/Projet', projetRoutes);
-app.use('/api/ImageProjet', imagesRoutes);
+
 
 // Redirection par défaut
 app.get('/', (req, res) => {

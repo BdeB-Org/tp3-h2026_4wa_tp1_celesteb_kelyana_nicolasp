@@ -1,3 +1,4 @@
+//Fait par Kelyan
 requireAuth();
 
 const form = document.getElementById('formEdit');

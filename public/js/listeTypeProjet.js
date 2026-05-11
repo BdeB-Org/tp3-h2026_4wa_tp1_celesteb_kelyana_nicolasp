@@ -1,3 +1,4 @@
+// Fait par Céleste
 requireAuth();
 
 const form = document.getElementById('formAjout');

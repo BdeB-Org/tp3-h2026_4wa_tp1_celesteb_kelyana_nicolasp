@@ -32,14 +32,7 @@ db.serialize(() => {
             nom_type TEXT NOT NULL UNIQUE
         )
     `);
-    db.run(`
-        CREATE TABLE IF NOT EXISTS ImageProjet (
-            id_image INTEGER PRIMARY KEY AUTOINCREMENT,
-            chemin_image TEXT NOT NULL,
-            id_projet INTEGER NOT NULL,
-            FOREIGN KEY (id_projet) REFERENCES Projet(id_projet)
-        )
-    `);
+
     db.run(`
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
