@@ -8,6 +8,7 @@ const projetController = require("../controllers/projetController");
 router.use(authMiddleware);
 
 router.get("/Projet", projetController.getProjet);
+router.get("/Projet/:id", projetController.getProjetById);
 router.post("/Projet", projetController.addProjet)
 router.delete("/Projet/:id", projetController.deleteProjet);
 router.put("/Projet/:id", projetController.updateProjet);

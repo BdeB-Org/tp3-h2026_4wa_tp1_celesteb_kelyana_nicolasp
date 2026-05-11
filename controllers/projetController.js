@@ -8,6 +8,21 @@ exports.getProjet = (req,res)=>{
  });
 };
 
+exports.getProjetById = (req,res)=>{
+ const id = req.params.id;
+ db.get(
+  'SELECT * FROM Projet WHERE id_projet=?',
+  [id],
+  (err,row)=>{
+   if(err){
+    return res.status(500).json({
+     message:"Erreur serveur"
+    }); }
+   if(!row){
+    return res.status(404).json({
+     message:"Projet non trouvé"  }); }
+   res.json(row);});};
+
 exports.addProjet = (req, res) => {
     const titre = req.body.titre;
     const description = req.body.description;
