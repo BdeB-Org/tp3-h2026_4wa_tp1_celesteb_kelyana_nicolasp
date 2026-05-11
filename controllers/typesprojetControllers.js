@@ -11,6 +11,20 @@ exports.getTypeProjet = (req, res) => {
     });
 };
 
+exports.getTypeProjetById = (req,res)=>{
+ const id = req.params.id;
+ db.get(
+  'SELECT * FROM TypeProjet WHERE id_type=?',
+  [id],
+  (err,row)=>{
+   if(err){
+    return res.status(500).json({
+     message:"Erreur serveur"
+    }); }
+   if(!row){
+    return res.status(404).json({
+     message:"Type de projet non trouvé"  }); }
+   res.json(row);});};
 
 exports.addTypeProjet = (req, res) => {
     const type = req.body.nom_type;
