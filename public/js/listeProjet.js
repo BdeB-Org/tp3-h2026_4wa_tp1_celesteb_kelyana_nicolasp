@@ -1,7 +1,6 @@
 requireAuth();
 
-const form = document.getElementById('formAjout');
-const tbody = document.getElementById('tbodyProjet');
+const tbody = document.getElementById('tbodyListProjet');
 const message = document.getElementById('message');
 
 function showMessage(text, isError = false) {
@@ -9,6 +8,7 @@ function showMessage(text, isError = false) {
 }
 
 function escapeHtml(value) {
+    if (value === null || value === undefined) return '';
     return String(value)
         .replaceAll('&', '&amp;')
         .replaceAll('<', '&lt;')
@@ -21,16 +21,16 @@ async function chargerProjet() {
     try {
         const res = await apiFetch('/api/Projet');
         const data = await res.json();
-
         tbody.innerHTML = '';
-
         data.forEach(Projet => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td>${Projet.id_projet}</td>
                 <td>${escapeHtml(Projet.titre)}</td>
                 <td>${escapeHtml(Projet.description)}</td>
-                <td>${escapeHtml(Projet.date)}</td>
+                <td>${escapeHtml(Projet.date_creation)}</td>
+                <td>${escapeHtml(Projet.id_eleve)}</td>
+                <td>${escapeHtml(Projet.id_type)}</td>
                 <td>
                     <a class="btn-link" href="/editProjet.html?id=${Projet.id_projet}">Modifier</a>
                     <button class="danger" onclick="supprimerProjet(${Projet.id_projet})">Supprimer</button>
@@ -45,18 +45,14 @@ async function chargerProjet() {
 
 async function supprimerProjet(id_projet) {
     if (!confirm('Voulez-vous vraiment supprimer ce Projet ?')) return;
-
     try {
         const res = await apiFetch('/api/Projet/' + id_projet, {
             method: 'DELETE'
         });
-
         const data = await res.json();
-
         if (!res.ok) {
             throw new Error(data.message || 'Erreur lors de la suppression');
         }
-
         showMessage(data.message);
         chargerProjet();
     } catch (err) {

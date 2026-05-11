@@ -1,5 +1,4 @@
 requireAuth();
-
 const form = document.getElementById('formAjout');
 const tbody = document.getElementById('tbodyProjet');
 const message = document.getElementById('message');
@@ -9,6 +8,7 @@ function showMessage(text, isError = false) {
 }
 
 function escapeHtml(value) {
+    if (value === null || value === undefined) return '';
     return String(value)
         .replaceAll('&', '&amp;')
         .replaceAll('<', '&lt;')
@@ -21,16 +21,16 @@ async function chargerProjet() {
     try {
         const res = await apiFetch('/api/Projet');
         const data = await res.json();
-
         tbody.innerHTML = '';
-
         data.forEach(Projet => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td>${Projet.id_projet}</td>
                 <td>${escapeHtml(Projet.titre)}</td>
                 <td>${escapeHtml(Projet.description)}</td>
-                <td>${escapeHtml(Projet.date)}</td>
+                <td>${escapeHtml(Projet.date_creation)}</td>
+                <td>${escapeHtml(Projet.id_eleve)}</td>
+                <td>${escapeHtml(Projet.id_type)}</td>
                 <td>
                     <a class="btn-link" href="/editProjet.html?id=${Projet.id_projet}">Modifier</a>
                     <button class="danger" onclick="supprimerProjet(${Projet.id_projet})">Supprimer Projet</button>
@@ -45,22 +45,16 @@ async function chargerProjet() {
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     const titre = document.getElementById('titre').value.trim();
     const description = document.getElementById('description').value.trim();
-
+    const date_creation = document.getElementById('date').value;
     try {
         const res = await apiFetch('/api/Projet', {
             method: 'POST',
-            body: JSON.stringify({ titre, description })
+            body: JSON.stringify({ titre, description, date_creation })
         });
-
         const data = await res.json();
-
-        if (!res.ok) {
-            throw new Error(data.message || 'Erreur lors de l\'ajout');
-        }
-
+        if (!res.ok) throw new Error(data.message || "Erreur lors de l'ajout");
         form.reset();
         showMessage('Projet ajouté avec succès');
         chargerProjet();
@@ -71,18 +65,10 @@ form.addEventListener('submit', async (e) => {
 
 async function supprimerProjet(id) {
     if (!confirm('Voulez-vous vraiment supprimer ce projet ?')) return;
-
     try {
-        const res = await apiFetch('/api/Projet/' + id, {
-            method: 'DELETE'
-        });
-
+        const res = await apiFetch('/api/Projet/' + id, { method: 'DELETE' });
         const data = await res.json();
-
-        if (!res.ok) {
-            throw new Error(data.message || 'Erreur lors de la suppression');
-        }
-
+        if (!res.ok) throw new Error(data.message || 'Erreur lors de la suppression');
         showMessage(data.message);
         chargerProjet();
     } catch (err) {

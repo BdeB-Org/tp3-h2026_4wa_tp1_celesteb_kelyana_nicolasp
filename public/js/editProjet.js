@@ -20,6 +20,7 @@ async function chargerProjet() {
 
         document.getElementById('titre').value = data.titre;
         document.getElementById('description').value = data.description;
+        document.getElementById('date').value = data.date_creation;
     } catch (err) {
         showMessage(err.message, true);
     }
@@ -30,11 +31,11 @@ form.addEventListener('submit', async (e) => {
 
     const titre = document.getElementById('titre').value.trim();
     const description = document.getElementById('description').value.trim();
-
+    const date_creation = document.getElementById('date').value;
     try {
         const res = await apiFetch('/api/Projet/' + id, {
             method: 'PUT',
-            body: JSON.stringify({ titre, description })
+            body: JSON.stringify({ titre, description, date_creation })
         });
 
         const data = await res.json();
