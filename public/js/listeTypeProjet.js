@@ -1,7 +1,7 @@
 requireAuth();
 
 const form = document.getElementById('formAjout');
-const tbody = document.getElementById('tbodyEtudiants');
+const tbody = document.getElementById('tbodyTypeProjet');
 const message = document.getElementById('message');
 
 function showMessage(text, isError = false) {
@@ -19,20 +19,19 @@ function escapeHtml(value) {
 
 async function choisirTypeProjets() {
     try {
-        const res = await apiFetch('/api/etudiants');
+        const res = await apiFetch('/api/TypeProjet');
         const data = await res.json();
 
         tbody.innerHTML = '';
 
-        data.forEach(etudiant => {
+        data.forEach(typeProjet => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td>${etudiant.id}</td>
-                <td>${escapeHtml(etudiant.nom)}</td>
-                <td>${escapeHtml(etudiant.programme)}</td>
+                <td>${typeProjet.id_type}</td>
+                <td>${escapeHtml(typeProjet.nom)}</td>
                 <td>
-                    <a class="btn-link" href="/edit.html?id=${etudiant.id}">Modifier</a>
-                    <button class="danger" onclick="supprimerEtudiant(${etudiant.id})">Supprimer</button>
+                    <a class="btn-link" href="/editTypeProjet.html?id=${typeProjet.id_type}">Modifier</a>
+                    <button class="danger" onclick="supprimerTypeProjet(${typeProjet.id_type})">Supprimer</button>
                 </td>
             `;
             tbody.appendChild(tr);
@@ -42,37 +41,11 @@ async function choisirTypeProjets() {
     }
 }
 
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const nom = document.getElementById('nom').value.trim();
-    const programme = document.getElementById('programme').value.trim();
+async function supprimerTypeProjet(id) {
+    if (!confirm('Voulez-vous vraiment supprimer ce type de projet ?')) return;
 
     try {
-        const res = await apiFetch('/api/etudiants', {
-            method: 'POST',
-            body: JSON.stringify({ nom, programme })
-        });
-
-        const data = await res.json();
-
-        if (!res.ok) {
-            throw new Error(data.message || 'Erreur lors de l\'ajout');
-        }
-
-        form.reset();
-        showMessage('Étudiant ajouté avec succès');
-        choisirTypeProjets();
-    } catch (err) {
-        showMessage(err.message, true);
-    }
-});
-
-async function supprimerEtudiant(id) {
-    if (!confirm('Voulez-vous vraiment supprimer cet étudiant ?')) return;
-
-    try {
-        const res = await apiFetch('/api/etudiants/' + id, {
+        const res = await apiFetch('/api/TypeProjet/' + id, {
             method: 'DELETE'
         });
 
