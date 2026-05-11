@@ -18,8 +18,8 @@ async function choisirTypeProjet() {
             throw new Error(data.message || 'Erreur lors du chargement');
         }
 
-        document.getElementById('id_type').value = data.nom;
-        document.getElementById('nom_type').value = data.programme;
+        document.getElementById('id_type').value = data.id_type;
+        document.getElementById('nom_type').value = data.nom;
     } catch (err) {
         showMessage(err.message, true);
     }
@@ -28,13 +28,12 @@ async function choisirTypeProjet() {
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const nom = document.getElementById('nom').value.trim();
-    const programme = document.getElementById('programme').value.trim();
+    const nom = document.getElementById('nom_type').value.trim();
 
     try {
-        const res = await apiFetch('/api/etudiants/' + id, {
+        const res = await apiFetch('/api/TypeProjet/' + id, {
             method: 'PUT',
-            body: JSON.stringify({ nom, programme })
+            body: JSON.stringify({ nom })
         });
 
         const data = await res.json();
@@ -53,7 +52,7 @@ form.addEventListener('submit', async (e) => {
 });
 
 if (!id) {
-    showMessage('ID étudiant manquant', true);
+    showMessage('ID type de projet manquant', true);
 } else {
     choisirTypeProjet();
 }

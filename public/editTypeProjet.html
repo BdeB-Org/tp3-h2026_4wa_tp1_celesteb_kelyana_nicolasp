@@ -2,17 +2,17 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Modifier un étudiant</title>
+    <title>Modifier un type de projet</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="container" style="max-width: 700px;">
         <div class="topbar">
             <div>
-                <h1>Choisir un type de projet</h1>
+                <h1>Modifier type de projet</h1>
             </div>
             <div class="actions">
-                <a class="btn-link" href="/liste.html">Retour à la liste</a>
+                <a class="btn-link" href="/listTypesProjet.html">Retour à la liste</a>
                 <button class="secondary" onclick="logout()">Déconnexion</button>
             </div>
         </div>
@@ -20,8 +20,8 @@
         <div id="message"></div>
 
         <form id="formEdit">
-            <input type="text" id="id_type" placeholder="" required>
-            <input type="text" id="nom_type" placeholder="Type de projet" required>
+            <input type="text" id="id_type" placeholder="ID du type de projet" required>
+            <input type="text" id="nom_type" placeholder="Nom du type de projet" required>
             <button type="submit">Enregistrer les modifications</button>
         </form>
     </div>

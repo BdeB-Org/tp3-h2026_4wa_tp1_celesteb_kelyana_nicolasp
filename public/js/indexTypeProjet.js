@@ -1,7 +1,7 @@
 requireAuth();
 
 const form = document.getElementById('formAjout');
-const tbody = document.getElementById('tbodyEtudiants');
+const tbody = document.getElementById('tbodyTypeProjet');
 const message = document.getElementById('message');
 
 function showMessage(text, isError = false) {
@@ -19,20 +19,19 @@ function escapeHtml(value) {
 
 async function choisirTypeProjet() {
     try {
-        const res = await apiFetch('/api/etudiants');
+        const res = await apiFetch('/api/types-projets');
         const data = await res.json();
 
         tbody.innerHTML = '';
 
-        data.forEach(etudiant => {
+        data.forEach(typeProjet => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td>${etudiant.id}</td>
-                <td>${escapeHtml(etudiant.nom)}</td>
-                <td>${escapeHtml(etudiant.programme)}</td>
+                <td>${typeProjet.id}</td>
+                <td>${escapeHtml(typeProjet.nom)}</td>
                 <td>
-                    <a class="btn-link" href="/edit.html?id=${etudiant.id}">Modifier</a>
-                    <button class="danger" onclick="supprimerEtudiant(${etudiant.id})">Supprimer</button>
+                    <a class="btn-link" href="/editTypeProjet.html?id=${typeProjet.id}">Modifier</a>
+                    <button class="danger" onclick="supprimerTypeProjet(${typeProjet.id})">Supprimer</button>
                 </td>
             `;
             tbody.appendChild(tr);
@@ -45,13 +44,12 @@ async function choisirTypeProjet() {
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const nom = document.getElementById('nom').value.trim();
-    const programme = document.getElementById('programme').value.trim();
+    const nom = document.getElementById('nom_type').value.trim();
 
     try {
-        const res = await apiFetch('/api/etudiants', {
+        const res = await apiFetch('/api/TypeProjet', {
             method: 'POST',
-            body: JSON.stringify({ nom, programme })
+            body: JSON.stringify({ nom })
         });
 
         const data = await res.json();
@@ -61,18 +59,18 @@ form.addEventListener('submit', async (e) => {
         }
 
         form.reset();
-        showMessage('Étudiant ajouté avec succès');
+        showMessage('Type de projet ajouté avec succès');
         choisirTypeProjet();
     } catch (err) {
         showMessage(err.message, true);
     }
 });
 
-async function supprimerEtudiant(id) {
-    if (!confirm('Voulez-vous vraiment supprimer cet étudiant ?')) return;
+async function supprimerTypeProjet(id) {
+    if (!confirm('Voulez-vous vraiment supprimer ce type de projet ?')) return;
 
     try {
-        const res = await apiFetch('/api/etudiants/' + id, {
+        const res = await apiFetch('/api/TypeProjet/' + id, {
             method: 'DELETE'
         });
 

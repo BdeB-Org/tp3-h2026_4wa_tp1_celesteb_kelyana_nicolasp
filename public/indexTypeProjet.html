@@ -2,42 +2,39 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Gestion des étudiants</title>
+    <title>Gestion des Types de Projets</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="container">
         <div class="topbar">
             <div>
-                <h1>Gestion des étudiants</h1>
+                <h1>Gestion des Types de Projets</h1>
                 <p class="small">Ajout et affichage dans un tableau</p>
             </div>
             <div class="actions">
-                <a class="btn-link" href="/liste.html">Voir la liste complète</a>
+                <a class="btn-link" href="/listTypesProjet.html">Voir la liste complète</a>
                 <button class="secondary" onclick="logout()">Déconnexion</button>
             </div>
         </div>
 
         <div id="message"></div>
 
-        <h2>Ajouter un étudiant</h2>
+        <h2>Ajouter un type de projet</h2>
         <form id="formAjout">
-            <input type="text" id="nom" placeholder="Nom" required>
-            <input type="text" id="programme" placeholder="Programme" required>
+            <input type="text" id="nom_type" placeholder="Nom du type de projet" required>
             <button type="submit">Ajouter</button>
         </form>
 
-        <h2>Ensemble des étudiants</h2>
+        <h2>Ensemble des types de projets</h2>
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Prenom</th>
-                    <th>Nom</th>
-                    <th>Actions</th>
+                    <th>ID_TypeProjet</th>
+                    <th>Nom_TypeProjet</th>
                 </tr>
             </thead>
-            <tbody id="tbodyEtudiants"></tbody>
+            <tbody id="tbodyTypesProjet"></tbody>
         </table>
     </div>
 

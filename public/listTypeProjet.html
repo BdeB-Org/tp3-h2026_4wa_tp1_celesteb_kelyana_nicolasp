@@ -2,18 +2,18 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Liste des étudiants</title>
+    <title>Liste des types de projets</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="container">
         <div class="topbar">
             <div>
-                <h1>Liste des étudiants</h1>
-                <p class="small">Modifier et supprimer des étudiants existants</p>
+                <h1>Liste des types de projets</h1>
+                <p class="small">Modifier et supprimer des types de projets existants</p>
             </div>
             <div class="actions">
-                <a class="btn-link" href="/index.html">Retour à l'ajout</a>
+                <a class="btn-link" href="/indexTypeProjet.html">Retour à l'ajout</a>
                 <button class="secondary" onclick="logout()">Déconnexion</button>
             </div>
         </div>
@@ -23,9 +23,8 @@
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nom</th>
-                    <th>Programme</th>
+                    <th>ID_TypeProjet</th>
+                    <th>Nom_TypeProjet</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -34,6 +33,6 @@
     </div>
 
     <script src="js/auth.js"></script>
-    <script src="js/listeTypeProjet.js"></script>
+    <script src="js/listTypeProjet.js"></script>
 </body>
 </html>
