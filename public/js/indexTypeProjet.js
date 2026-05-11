@@ -19,7 +19,7 @@ function escapeHtml(value) {
 
 async function choisirTypeProjet() {
     try {
-        const res = await apiFetch('/api/types-projets');
+        const res = await apiFetch('/api/TypeProjet');
         const data = await res.json();
 
         tbody.innerHTML = '';
@@ -27,11 +27,11 @@ async function choisirTypeProjet() {
         data.forEach(typeProjet => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td>${typeProjet.id}</td>
+                <td>${typeProjet.id_type}</td>
                 <td>${escapeHtml(typeProjet.nom)}</td>
                 <td>
-                    <a class="btn-link" href="/editTypeProjet.html?id=${typeProjet.id}">Modifier</a>
-                    <button class="danger" onclick="supprimerTypeProjet(${typeProjet.id})">Supprimer</button>
+                    <a class="btn-link" href="/editTypeProjet.html?id=${typeProjet.id_type}">Modifier</a>
+                    <button class="danger" onclick="supprimerTypeProjet(${typeProjet.id_type})">Supprimer</button>
                 </td>
             `;
             tbody.appendChild(tr);
