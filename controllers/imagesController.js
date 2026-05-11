@@ -10,6 +10,21 @@ exports.getImages = (req, res) => {
   });
 };
 
+exports.getImageById = (req,res)=>{
+ const id = req.params.id;
+ db.get(
+  'SELECT * FROM ImageProjet WHERE id_image=?',
+  [id],
+  (err,row)=>{
+   if(err){
+    return res.status(500).json({
+     message:"Erreur serveur"
+    }); }
+   if(!row){
+    return res.status(404).json({
+     message:"Étudiant non trouvé"  }); }
+   res.json(row);});};
+
 exports.addImages = (req, res) => {
     const chemin_image = req.body.chemin_image;
     const id_projet = req.body.id_projet;
