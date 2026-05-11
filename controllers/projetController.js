@@ -73,10 +73,10 @@ return res.status(500).json({ erreur: err.message });
 
 // Vérifier si une ligne a été supprimée​
 if (this.changes === 0) {
-return res.status(404).json({ message: "Aucun étudiant trouvé avec cet ID" });
+return res.status(404).json({ message: "Aucun projet trouvé avec cet ID" });
 }
 
-res.json({ message: "Étudiant supprimé", id: id });
+res.json({ message: "Projet supprimé", id: id });
 }
 );
 

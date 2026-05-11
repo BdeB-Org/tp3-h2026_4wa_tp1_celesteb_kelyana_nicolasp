@@ -30,6 +30,7 @@ async function chargerProjet() {
                 <td>${Projet.id_projet}</td>
                 <td>${escapeHtml(Projet.titre)}</td>
                 <td>${escapeHtml(Projet.description)}</td>
+                <td>${escapeHtml(Projet.date)}</td>
                 <td>
                     <a class="btn-link" href="/editProjet.html?id=${Projet.id_projet}">Modifier</a>
                     <button class="danger" onclick="supprimerProjet(${Projet.id_projet})">Supprimer Projet</button>
